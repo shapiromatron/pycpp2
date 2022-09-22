@@ -1,0 +1,29 @@
+name: Build wheels
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-2019, macos-11]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.10.1
+        env:
+          # python39 only
+          CIBW_BUILD: cp39-*
+          # no pypy, win32, linux32
+          CIBW_SKIP: "pp* *-win32 *_i686"
+          # universal mac wheels
+          CIBW_ARCHS_MACOS: "universal2"
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./wheelhouse/*.whl
