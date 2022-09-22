@@ -1,0 +1,4 @@
+build==0.8.0
+cibuildwheel==2.10.1
+pybind11==2.10.0
+setuptools==65.3.0
