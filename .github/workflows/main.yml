@@ -31,11 +31,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # complete set
-        # os: [ubuntu-20.04, windows-2019, macos-11]
-        # just linux for now
-        os: [ubuntu-20.04]
-
+        os: [ubuntu-20.04, windows-2019, macos-11]
     steps:
       - uses: actions/checkout@v3
       - name: Build wheels
