@@ -47,8 +47,6 @@ jobs:
           CIBW_SKIP: "pp* *-win32 *_i686"
           # universal mac wheels
           CIBW_ARCHS_MACOS: "universal2"
-          # testing
-          CIBW_TEST_COMMAND: pytest {project}/tests
       - uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl

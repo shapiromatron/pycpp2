@@ -20,7 +20,3 @@ py.test
 # build package locally
 python -m build
 ```
-
-
-TODO
-- add tests in cibuildwheel commands
