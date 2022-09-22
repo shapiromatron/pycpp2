@@ -6,7 +6,11 @@ jobs:
   test:
     name: Test on Python ${{ matrix.python-version }}
     runs-on: ubuntu-20.04
-    on: [push, pull_request]
+    on:
+      pull_request:
+      push:
+        branches:
+          - main
     strategy:
       matrix:
         python-version: ["3.9"]
