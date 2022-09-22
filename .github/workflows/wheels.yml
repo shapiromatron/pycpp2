@@ -21,7 +21,7 @@ jobs:
           # python39 only
           CIBW_BUILD: cp39-*
           # no pypy, win32, linux32
-          CIBW_SKIP: "pp* *-win32 *-manylinux_i686"
+          CIBW_SKIP: "pp* *-win32 *_i686"
           # universal mac wheels
           CIBW_ARCHS_MACOS: "universal2"
       - uses: actions/upload-artifact@v3
