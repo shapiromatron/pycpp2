@@ -16,6 +16,9 @@ pip install -e .
 
 # run tests to make sure it works and imports into python
 py.test
+
+# build package locally
+python -m build
 ```
 
 

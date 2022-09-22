@@ -8,3 +8,6 @@ def test_bloop():
     # test python package around c extension
     assert bloop.double_add(2, 2) == 8
 
+    # version -> python == cpp == expected value
+    assert bloop.bleep.__version__ ==  bloop.__version__ == "0.0.1"
+

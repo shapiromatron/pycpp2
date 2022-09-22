@@ -1,5 +1,8 @@
 #include <pybind11/pybind11.h>
 
+#define STRINGIFY(x) #x
+#define MACRO_STRINGIFY(x) STRINGIFY(x)
+
 namespace py = pybind11;
 
 void init_ex1(py::module_ &);
@@ -27,4 +30,11 @@ PYBIND11_MODULE(bleep, m) {
         .value("Write", Flags::Write)
         .value("Execute", Flags::Execute)
         .export_values();
+
+    // pass data from python at build-time
+    #ifdef VERSION_INFO
+        m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
+    #else
+        m.attr("__version__") = "dev";
+    #endif
 }
