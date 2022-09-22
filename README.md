@@ -17,3 +17,7 @@ pip install -e .
 # run tests to make sure it works and imports into python
 py.test
 ```
+
+
+TODO
+- add tests in cibuildwheel commands

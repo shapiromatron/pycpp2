@@ -5,9 +5,5 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-[tool.cibuildwheel]
-test-requires = "pytest"
-test-command = "pytest tests"
-
 [tool.pytest.ini_options]
 pythonpath = "."
