@@ -1,5 +1,7 @@
+*.egg-info
+*.so
+*.pyc
+
 build
 dist
 venv
-*.egg-info
-*.so

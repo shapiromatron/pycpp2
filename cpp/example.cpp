@@ -14,7 +14,7 @@ enum Flags {
 };
 
 
-PYBIND11_MODULE(bloop, m) {
+PYBIND11_MODULE(bleep, m) {
     m.doc() = "Simple c++ interface examples";
 
     // functions

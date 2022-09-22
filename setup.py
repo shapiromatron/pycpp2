@@ -1,5 +1,5 @@
 from glob import glob
-from setuptools import setup
+from setuptools import setup, find_packages
 
 from pybind11.setup_helpers import ParallelCompile
 from pybind11.setup_helpers import Pybind11Extension, build_ext
@@ -12,10 +12,11 @@ setup(
     version='0.0.1',
     python_requires=">=3.9",
     cmdclass={"build_ext": build_ext},
+    packages=find_packages('bloop'),
     ext_modules=[
         Pybind11Extension(
-            "bloop",
-            sorted(glob("src/*.cpp")),  # Sort for reproducibility
+            "bleep",
+            sorted(glob("cpp/*.cpp")),  # Sort for reproducibility
         )
     ]
 )
