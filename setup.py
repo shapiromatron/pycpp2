@@ -12,7 +12,7 @@ ParallelCompile("NPY_NUM_BUILD_JOBS").install()
 setup(
     name="bloop",
     version=__version__,
-    python_requires=">=3.9",
+    python_requires=">=3.10",
     cmdclass={"build_ext": build_ext},
     package_dir={"": "src"},
     packages=find_packages(where="src"),
