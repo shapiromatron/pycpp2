@@ -20,7 +20,7 @@ setup(
         Pybind11Extension(
             "bloop.bleep",
             sorted(glob("cpp/*.cpp")),  # Sort for reproducibility
-            define_macros = [('VERSION_INFO', __version__)],
+            define_macros=[('VERSION_INFO', __version__)],
         )
     ]
 )
