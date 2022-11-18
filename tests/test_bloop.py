@@ -1,13 +1,13 @@
-import bloop
+import pybmds
 
 
-def test_bloop():
+def test_pybmds():
     # test calling cpp extension directly
-    assert bloop.bleep.add(2, 2) == 4
-    assert bloop.bleep.sub(2, 2) == 0
+    assert pybmds.bleep.add(2, 2) == 4
+    assert pybmds.bleep.sub(2, 2) == 0
 
     # test python package around c extension
-    assert bloop.double_add(2, 2) == 8
+    assert pybmds.double_add(2, 2) == 8
 
     # version -> python == cpp == expected value
-    assert bloop.bleep.__version__ == bloop.__version__ == "0.0.1"
+    assert pybmds.bleep.__version__ == pybmds.__version__ == "0.0.1"

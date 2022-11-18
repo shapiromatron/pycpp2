@@ -10,7 +10,7 @@ __version__ = "0.0.1"
 ParallelCompile("NPY_NUM_BUILD_JOBS").install()
 
 setup(
-    name="bloop",
+    name="pybmds",
     version=__version__,
     python_requires=">=3.10",
     cmdclass={"build_ext": build_ext},
@@ -18,8 +18,8 @@ setup(
     packages=find_packages(where="src"),
     ext_modules=[
         Pybind11Extension(
-            "bloop.bleep",
-            sorted(glob("cpp/*.cpp")),  # Sort for reproducibility
+            "pybmds.bleep",
+            sorted(glob("src/pybmdscpp/*.cpp")),  # Sort for reproducibility
             define_macros=[('VERSION_INFO', __version__)],
         )
     ]
