@@ -12,18 +12,16 @@ The project does the following:
 ## Quickstart
 
 ```bash
+
+# required for mac?
+export "CC=/opt/homebrew/bin/gcc-14"
+export "CXX=/opt/homebrew/bin/g++-14"
+
 # setup environment
-python -m venv venv
+uv venv --python=3.12 venv
 source venv/bin/activate
-pip install -U pip wheel
-pip install -r requirements.txt
+uv pip install -e ".[dev]"
 
-# compile code and install package locally
-pip install -e .
-
-# run tests to make sure it works and imports into python
-py.test
-
-# build package locally
-python -m build
+poe build
+poe test
 ```

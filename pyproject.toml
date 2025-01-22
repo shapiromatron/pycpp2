@@ -1,13 +1,110 @@
-[build-system]
-requires = [
-    "setuptools>=65.5.1",
-    "pybind11>=2.10.1",
+[project]
+name = "bloop"
+authors = [{name = "My pycpp scaffold", email = "pyscaffold@email.com"}]
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file="LICENSE" }
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3.12",
+  "Private :: Do Not Upload",
 ]
-build-backend = "setuptools.build_meta"
+dependencies = []
 
 [tool.pytest.ini_options]
-pythonpath = "."
+pythonpath = ["src"]
+testpaths = "tests"
+
+[project.optional-dependencies]
+dev = [
+  "pybind11==2.13.6",
+  "setuptools==75.8.0",
+  "mypy==1.14.1",
+
+  "build~=1.2.2",
+  "cibuildwheel~=2.22.0",
+
+  "pytest~=8.3.4",
+  "coverage~=7.6.10",
+
+  "ruff~=0.9.2",
+
+  "poethepoet~=0.32.1",
+]
+
+[build-system]
+requires = [
+    "setuptools==75.8.0",
+    "pybind11>=2.13.6",
+]
+build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
 test-requires = "pytest"
 test-command = "pytest {project}/tests"
+
+[tool.coverage.run]
+omit = [
+  "./build/",
+  "./tests/*",
+  "./venv/*"
+]
+
+[tool.coverage.report]
+fail_under=99
+precision=1
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "UP", "S", "B", "T20", "RUF"]
+ignore = ["E501", "B904", "B007", "S308", "S113", "S314"]
+unfixable = ["F401", "F841"]
+isort.known-first-party = ["bloop"]
+
+[tool.ruff.lint.per-file-ignores]
+"test_*.py" = ["S101", "S106"]
+
+[tool.poe.tasks.lint]
+help = "Check formatting issues"
+sequence = [
+  {cmd = "ruff format . --check"},
+  {cmd = "ruff check ."},
+]
+
+[tool.poe.tasks.format]
+help = "Fix formatting issues (where possible)"
+sequence = [
+  {cmd = "ruff format ."},
+  {cmd = "ruff check . --fix --show-fixes"},
+]
+
+[tool.poe.tasks.test]
+help = "Run tests"
+cmd = "pytest"
+
+[tool.poe.tasks.coverage]
+help = "Generate test coverage report"
+sequence = [
+  {cmd = "coverage run -m pytest"},
+  {cmd = "coverage html"},
+]
+
+[tool.poe.tasks.build]
+help = "Build C++ package"
+sequence = [
+  {cmd = "python setup.py develop"},
+  {cmd = "stubgen -p bloop.core -o src/"},
+  {ref = "format"}
+]
+
+[tool.poe.tasks.dist]
+help = "Build Python package"
+cmd = "uv build"
+

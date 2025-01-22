@@ -17,8 +17,8 @@ enum Flags {
 };
 
 
-PYBIND11_MODULE(bleep, m) {
-    m.doc() = "Simple c++ interface examples";
+PYBIND11_MODULE(core, m) {
+    m.doc() = "Simple C++ interface examples";
 
     // functions
     init_ex1(m);

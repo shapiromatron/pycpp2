@@ -1,7 +1,10 @@
+*.coverage
 *.egg-info
 *.so
 *.pyc
 
-build
-dist
-venv
+.ruff_cache/
+build/
+dist/
+htmlcov/
+venv/
