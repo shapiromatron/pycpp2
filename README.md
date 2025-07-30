@@ -13,17 +13,16 @@ The project does the following:
 
 ```bash
 # setup environment
-python -m venv venv
-source venv/bin/activate
-pip install -U pip wheel
-pip install -r requirements.txt
-
-# compile code and install package locally
-pip install -e .
+uv venv --python=3.13 --prompt pycpp
+source .venv/bin/activate
+uv pip install -e ".[dev]"
 
 # run tests to make sure it works and imports into python
 py.test
 
 # build package locally
 python -m build
+
+# generate stubs for C++ file
+stubgen -p bloop.bleep -o src
 ```

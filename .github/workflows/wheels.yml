@@ -1,6 +1,7 @@
 name: Build wheels
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -12,18 +13,26 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04, windows-2022, macos-12]
+        os: [ubuntu-24.04, windows-2022, macos-14]
     steps:
       - uses: actions/checkout@v3
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.10.1
         env:
-          # python310 only
-          CIBW_BUILD: cp310-*
-          # no pypy, win32, linux32
+          CIBW_BUILD: cp313-*
           CIBW_SKIP: "pp* *-win32 *_i686"
-          # universal mac wheels
-          CIBW_ARCHS_MACOS: "universal2"
-      - uses: actions/upload-artifact@v3
+          CIBW_ARCHS_MACOS: "arm64"
+      - uses: actions/upload-artifact@v4
         with:
+          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
+
+  merge_wheels:
+    runs-on: ubuntu-24.04
+    needs: build_wheels
+    steps:
+      - name: Merge Artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: wheels
+          delete-merged: true

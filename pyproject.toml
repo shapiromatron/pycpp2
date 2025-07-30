@@ -1,9 +1,24 @@
+[project]
+name="bloop"
+version="0.0.1"
+requires-python = ">=3.11"
+
 [build-system]
 requires = [
-    "setuptools>=65.5.1",
-    "pybind11>=2.10.1",
+    "setuptools==80.9.0",
+    "pybind11==2.13.6",
 ]
 build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+dev = [
+    "build~=1.2.2",
+    "cibuildwheel==3.1.2",
+    "pybind11==2.13.6",
+    "setuptools==80.9.0",
+    "pytest==8.4.1",
+    "mypy==1.17.0",
+]
 
 [tool.pytest.ini_options]
 pythonpath = "."

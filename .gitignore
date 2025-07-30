@@ -2,6 +2,10 @@
 *.so
 *.pyc
 
+.coverage
+.ruff_cache
+.venv
 build
 dist
+htmlcov
 venv
