@@ -7,23 +7,22 @@ The project does the following:
 - Builds a simple cpp package
 - Builds a python interface to the cpp package
 - Has some tests to ensure the cpp package works correctly from python
-- Automatically builds the python package on Mac, Linux, and Windows
+- Automatically builds the packages on Mac, Linux, and Windows
 
 ## Quickstart
 
 ```bash
 # setup environment
-python -m venv venv
-source venv/bin/activate
-pip install -U pip wheel
-pip install -r requirements.txt
-
-# compile code and install package locally
-pip install -e .
+uv venv --python=3.13 --prompt pycpp
+source .venv/bin/activate
+uv pip install -e ".[dev]"
 
 # run tests to make sure it works and imports into python
 py.test
 
 # build package locally
 python -m build
+
+# generate stubs for C++ file
+stubgen -p bloop.bleep -o src
 ```
