@@ -7,7 +7,7 @@ The project does the following:
 - Builds a simple cpp package
 - Builds a python interface to the cpp package
 - Has some tests to ensure the cpp package works correctly from python
-- Automatically builds the python package on Mac, Linux, and Windows
+- Automatically builds the packages on Mac, Linux, and Windows
 
 ## Quickstart
 

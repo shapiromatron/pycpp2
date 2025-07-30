@@ -21,7 +21,7 @@ jobs:
         uses: pypa/cibuildwheel@v3.1.2
         env:
           CIBW_BUILD: "cp311-* cp312-* cp313-* cp314-* cp314t-*"
-          CIBW_SKIP: "pp* *-win32 *_i686 -musllinux"
+          CIBW_SKIP: "*win32 *i686 *musllinux"
           CIBW_ARCHS_MACOS: "arm64"
           MACOSX_DEPLOYMENT_TARGET: "14.0"
       - uses: actions/upload-artifact@v4
