@@ -1,5 +1,9 @@
 # A distributable python/cpp package
 
+**Update - see https://github.com/shapiromatron/pycpp. It's better.**
+
+---
+
 Explorations in how to use Python, C++, and bindings between the two systems. Build compiled code in multiple environments via GitHub Actions. Key technologies used include [pybind11](https://pybind11.readthedocs.io/en/stable/) and [cibuildwheel](https://cibuildwheel.readthedocs.io/en/stable/).
 
 The project does the following:
